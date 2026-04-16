@@ -15,11 +15,6 @@ class SurveyViewSet(BaseModelViewSet):
     http_method_names = ['get', 'post', 'put', 'delete']
     permission_classes = [IsAuthenticated]
 
-    # def get_serializer_class(self):
-    #     if self.action in ['update', ]:
-    #         return ProductionOrderWriterSerializer
-    #     return ProductionOrderReaderSerializer
-
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
