@@ -1,0 +1,6 @@
+Django==3.2.18
+djangorestframework==3.12.4
+django-cors-headers==3.10.1
+django-environ==0.10.0
+ipython==8.18.1
+factory-boy==3.2.1
