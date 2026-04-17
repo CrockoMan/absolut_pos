@@ -1,4 +1,4 @@
-## Тестовое задание python-разработчик 
+## Тестовое задание Python developer: Опросы UGC
 <img width="718" height="661" alt="image" src="https://github.com/user-attachments/assets/5ef9bcf9-c381-42cb-b26e-0bf72dfac137" />
 
 ### Как запустить проект:
