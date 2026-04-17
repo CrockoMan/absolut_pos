@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'import_export',
     'core',
 ]
 
@@ -60,9 +61,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'survey.wsgi.application'
 
 
-
 if DB_TYPE == 'postgres':
-    print(f'DATABASE_TYPE {DB_TYPE}')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -75,7 +74,6 @@ if DB_TYPE == 'postgres':
     }
     INSTALLED_APPS.append('django.contrib.postgres')
 else:
-    print(f'DATABASE_TYPE SQlite3')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

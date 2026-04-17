@@ -7,12 +7,17 @@ from core.views.api.v1.serializers.survey import SurveySerializer
 
 
 class SurveyViewSet(BaseModelViewSet):
-    """Вью опросов."""
 
     serializer_class = SurveySerializer
-    queryset = Survey.objects.all()
     http_method_names = ['get', 'post', 'put', 'delete']
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = Survey.objects.all().prefetch_related(
+            'survey_questions',
+            'survey_questions__survey_question_items',
+        )
+        return queryset
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)

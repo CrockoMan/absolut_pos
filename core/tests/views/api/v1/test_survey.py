@@ -12,6 +12,31 @@ class SurveyAPITestCase(APITestCase):
     def setUp(self):
         self.user = UserFactory()
         self.survey = SurveyFactory()
+        self.survey_data = {
+            'author': self.user.id,
+            'name': 'Survey Without Author',
+            'survey_date': '2026-01-01',
+            "questions": [
+                {
+                    "text": "Любите томаты?",
+                    "order": 0,
+                    "questions": [
+                        {
+                            "text": "Нет15",
+                            "order": 1
+                        },
+                        {
+                            "text": "Да1",
+                            "order": 2
+                        },
+                        {
+                            "text": "Не знаю1",
+                            "order": 3
+                        }
+                    ]
+                },
+            ]
+        }
 
     def test_unauthenticated_user_cannot_list_surveys(self):
         # LIST - неаутентифицированный пользователь
@@ -44,12 +69,9 @@ class SurveyAPITestCase(APITestCase):
         self.client.force_authenticate(user=self.user)
         url = reverse('core:api:v1:survey-detail', args=[self.survey.id])
 
-        updated_data = {
-            'name': 'Test',
-            "author": self.user.id,
-        }
+        self.survey_data['author'] = self.user.id
 
-        response = self.client.put(url, updated_data, format='json')
+        response = self.client.put(url, self.survey_data, format='json')
         response_json = response.json()
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -59,13 +81,9 @@ class SurveyAPITestCase(APITestCase):
         self.client.force_authenticate(user=self.user)
         url = reverse('core:api:v1:survey-list')
 
-        survey_data = {
-            'author': self.user.id,
-            'name': 'Survey Without Author',
-            'survey_date': '2024-12-31',
-        }
+        self.survey_data['author'] = self.user.id
 
-        response = self.client.post(url, survey_data, format='json')
+        response = self.client.post(url, self.survey_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_authenticated_user_can_create_survey(self):
@@ -74,14 +92,10 @@ class SurveyAPITestCase(APITestCase):
         self.client.force_authenticate(user=user)
         url = reverse('core:api:v1:survey-list')
 
-        survey_data = {
-            'author': user.id,
-            'name': 'Survey Without Author',
-            'survey_date': '2024-12-31',
-        }
+        self.survey_data['author'] = user.id
 
-        response = self.client.post(url, survey_data, format='json')
+        response = self.client.post(url, self.survey_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         response_json = response.json()
-        self.assertEqual(response_json['name'], survey_data['name'])
+        self.assertEqual(response_json['name'], self.survey_data['name'])
         self.assertEqual(response_json['author'], user.id)

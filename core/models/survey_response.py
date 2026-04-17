@@ -1,22 +1,23 @@
-from django.contrib.auth.models import User
 from django.db import models
-from django.utils import timezone
 
 from core.models.base import BaseModel
 
 
 class SurveyResponse(BaseModel):
-    # survey = models.ForeignKey(
-    #     'core.Survey',
-    #     on_delete=models.CASCADE,
-    #     related_name='responses',
-    #     verbose_name='Опрос',
-    # )
     survey_question = models.ForeignKey(
         'core.SurveyQuestion',
         on_delete=models.CASCADE,
         related_name='responses',
         verbose_name='Опрос',
+    )
+
+    survey_question_item = models.ForeignKey(
+        'core.SurveyQuestionItem',
+        on_delete=models.CASCADE,
+        related_name='responses',
+        verbose_name='Опрос',
+        null=True,
+        blank=True,
     )
 
     user = models.ForeignKey(
@@ -53,7 +54,7 @@ class SurveyResponse(BaseModel):
     class Meta:
         verbose_name = 'Ответ на опрос'
         verbose_name_plural = 'Ответы на опросы'
-        unique_together = ['user', 'survey_question',]
+        unique_together = ['user', 'survey_question','survey_question_item',]
 
     def __str__(self):
         return f'{self.user.email} - {self.survey_question.text[:50]}'

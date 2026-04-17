@@ -1,4 +1,5 @@
 from django.db import models
+
 from core.models.base import BaseModel
 
 
@@ -6,7 +7,7 @@ class SurveyQuestionItem(BaseModel):
     survey_question = models.ForeignKey(
         'core.SurveyQuestion',
         on_delete=models.CASCADE,
-        related_name='survey_items',
+        related_name='survey_question_items',
         verbose_name='Вопрос',
         null=True,
         blank=True,
@@ -21,7 +22,6 @@ class SurveyQuestionItem(BaseModel):
         verbose_name = 'Вопрос'
         verbose_name_plural = 'Вопросы'
         ordering = ['order', ]
-        unique_together = (('survey_question', 'text'),)
 
     def __str__(self):
         return f'{self.survey_question}  {self.text[:50]}'
