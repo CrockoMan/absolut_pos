@@ -1,4 +1,5 @@
-## Тестовое задание Python developer: Опросы UGC Компания Absolut POS https://hh.ru/employer/2784276?hhtmFrom=vacancy
+## Тестовое задание Python developer: Опросы UGC Компания Absolut POS 
+https://hh.ru/employer/2784276?hhtmFrom=vacancy
 <img width="718" height="661" alt="image" src="https://github.com/user-attachments/assets/5ef9bcf9-c381-42cb-b26e-0bf72dfac137" />
 
 ### Как запустить проект:
