@@ -1,4 +1,6 @@
 ## Тестовое задание python-разработчик 
+<img width="718" height="661" alt="image" src="https://github.com/user-attachments/assets/5ef9bcf9-c381-42cb-b26e-0bf72dfac137" />
+
 ### Как запустить проект:
 
 Используется Python 3.9.10, 
@@ -220,6 +222,8 @@ python manage.py test --noinput  --keepdb core.tests.views.api.v1.test_survey
 <img width="1102" height="639" alt="image" src="https://github.com/user-attachments/assets/90e3f541-7206-4aa6-af72-1928dd6f9844" />
 <img width="1075" height="773" alt="image" src="https://github.com/user-attachments/assets/4829abe4-19de-4283-a6a1-90bd0a3d658e" />
 <img width="1084" height="769" alt="image" src="https://github.com/user-attachments/assets/e160308c-78bb-4070-bf97-4c448582e1c2" />
+<img width="1788" height="377" alt="image" src="https://github.com/user-attachments/assets/72679316-7313-49d7-aec9-e6fbc6413b34" />
+
 
 
 Автор: К.Гурашкин
